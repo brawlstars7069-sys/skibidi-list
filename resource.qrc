@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/ibaChotko.jpg</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>PIRIDAY.mp3</file>
+    </qresource>
+</RCC>

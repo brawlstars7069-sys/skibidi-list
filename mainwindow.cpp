@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "popupwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7,16 +8,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddTask);
-    connect(ui->markButton, &QPushButton::clicked, this, &MainWindow::onMarkAsCompleted);
-    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteTask);
+connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddTask);
+connect(ui->markButton, &QPushButton::clicked, this, &MainWindow::onMarkAsCompleted);
+connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteTask);
 
-    ui->taskTable->setColumnCount(3);
-    ui->taskTable->setHorizontalHeaderLabels({"Дата", "Задача", "Статус"});
+ui->taskTable->setColumnCount(3);
+ui->taskTable->setHorizontalHeaderLabels({"Дата", "Задача", "Статус"});
 
-    ui->taskTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents); // Дата
-    ui->taskTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);          // Задача
-    ui->taskTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents); // Статус
+ui->taskTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents); // Дата
+ui->taskTable->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);          // Задача
+ui->taskTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents); // Статус
 }
 
 MainWindow::~MainWindow()
@@ -71,3 +72,11 @@ void MainWindow::onDeleteTask()
 
     ui->taskTable->removeRow(currentRow);
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    PopupWindow window;
+    window.setModal(true);
+    window.exec();
+}
+
