@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->addButton, &QPushButton::clicked, this, &MainWindow::onAddTask);
     connect(ui->markButton, &QPushButton::clicked, this, &MainWindow::onMarkAsCompleted);
+    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDeleteTask);
 
     ui->taskTable->setColumnCount(3);
     ui->taskTable->setHorizontalHeaderLabels({"Дата", "Задача", "Статус"});
@@ -60,3 +61,13 @@ void MainWindow::onMarkAsCompleted()
     statusItem->setText("Выполнено");
 }
 
+void MainWindow::onDeleteTask()
+{
+    int currentRow = ui->taskTable->currentRow();
+    if (currentRow < 0) {
+        QMessageBox::information(this, "Ошибка", "Себя удали, умник.");
+        return;
+    }
+
+    ui->taskTable->removeRow(currentRow);
+}

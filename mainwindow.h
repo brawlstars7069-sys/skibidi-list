@@ -22,6 +22,7 @@ public:
 private slots:
     void onAddTask();
     void onMarkAsCompleted();
+    void onDeleteTask();
 
 private:
     Ui::MainWindow *ui;
